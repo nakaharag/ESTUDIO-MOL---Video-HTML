@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>SIGA O LÍDER</title>
+		<style type="text/css">
+			html { 
+			  background: url('video_vertical.jpg') no-repeat center center fixed; 
+			  -webkit-background-size: cover;
+			  -moz-background-size: cover;
+			  -o-background-size: cover;
+			  background-size: cover;
+			}
+			.video-container {
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  width: 100vw;
+			  height: 100vh;
+			}
+			.video-container > video {
+			  display: none;
+			  position: absolute;
+			  left: 50%;
+			  top: 50%;
+			  transform: translate(-50%, -50%);
+			  z-index: 1;
+			}
+			@media screen and (max-aspect-ratio: 1920/1080) {
+			  .video-container > video {
+			    height: 100%;
+			  }
+			}
+			@media screen and (min-aspect-ratio: 1920/1080) {
+			  .video-container > video {
+			    width: 100%;
+			  }
+			}
+		</style>
+	</head>
+	<body>
+		<div class ="video-container">
+		<video autoplay id="myVideo">
+		  <source src="video.mp4" type="video/mp4">
+		</video>
+		<input id="helper" value="0" type="hidden">
+	</div>
+	</body>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).on('click','body',function(){
+			 if($("#helper").val() == 0){
+				$('#myVideo').get(0).load();
+		     	$("#myVideo").show();
+		     	$("#helper").val(1);
+			 }
+		});	
+		$(document).ready(function(){
+		    $("#helper").val(0);
+		});	
+		$('#myVideo').on('ended',function(){ 
+			$('#myVideo').hide();
+			$("#helper").val(0);
+		});
+	</script>
+</html>
